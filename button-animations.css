@@ -1,0 +1,183 @@
+#user-form button,
+#register-form button,
+#shorten-button {
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 100%;
+  background-position: 0 0;
+  /* the cubic-bezier gives a little bounce when the button pops up */
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-position 0.5s ease,
+              color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+ 
+/* colors slide from light to deep blue on hover */
+#user-form button,
+#register-form button {
+  background-image: linear-gradient(90deg, #aab4f0 0%, #7b8cf0 50%, #3457d5 100%);
+}
+#shorten-button {
+  background-image: linear-gradient(90deg, #7b8cf0 0%, #5f73e8 50%, #3457d5 100%);
+}
+ 
+#user-form button:hover,
+#register-form button:hover {
+  background-image: linear-gradient(90deg, #aab4f0 0%, #7b8cf0 50%, #3457d5 100%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+#shorten-button:hover {
+  background-image: linear-gradient(90deg, #7b8cf0 0%, #5f73e8 50%, #3457d5 100%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+}
+ 
+#user-form button:hover,
+#register-form button:hover,
+#shorten-button:hover {
+  color: #fff;
+  transform: translateY(-4px) scale(1.06);      /* pops up and grows */
+  animation: btn-pulse 1.2s ease-out infinite;  /* glowing ring keeps pulsing */
+}
+ 
+#user-form button:active,
+#register-form button:active,
+#shorten-button:active {
+  transform: translateY(0) scale(0.94);         /* presses in when clicked */
+  animation: none;
+  box-shadow: 0 2px 6px rgba(52, 87, 213, 0.3);
+}
+ 
+@keyframes btn-pulse {
+  0%   { box-shadow: 0 10px 20px rgba(52, 87, 213, 0.35), 0 0 0 0 rgba(52, 87, 213, 0.45); }
+  70%  { box-shadow: 0 10px 20px rgba(52, 87, 213, 0.35), 0 0 0 14px rgba(52, 87, 213, 0); }
+  100% { box-shadow: 0 10px 20px rgba(52, 87, 213, 0.35), 0 0 0 0 rgba(52, 87, 213, 0); }
+}
+ 
+/* White shine*/
+#user-form button::after,
+#register-form button::after,
+#shorten-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+ 
+#user-form button:hover::after,
+#register-form button:hover::after,
+#shorten-button:hover::after {
+  animation: btn-shine 1s ease-in-out infinite;
+}
+ 
+@keyframes btn-shine {
+  0%       { left: -60%; }
+  60%, 100% { left: 130%; }
+}
+ 
+/* ---------- Popup No / Yes buttons ---------- */
+.modal-btn {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, background 0.15s ease;
+}
+.modal-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(52, 87, 213, 0.28);
+}
+.modal-btn:active { transform: scale(0.94); }
+ 
+/* ---------- Table icon buttons: view (eye) and delete (bin) ---------- */
+.view-btn,
+.delete-btn {
+  transition: transform 0.18s ease;
+}
+ 
+.view-btn:hover,
+.delete-btn:hover { transform: scale(1.18); }
+ 
+.view-btn:active,
+.delete-btn:active { transform: scale(0.9); }
+ 
+.delete-btn:hover img { animation: btn-wiggle 0.45s ease; }
+ 
+/* ---------- My Links footer buttons: page arrows, copy, view, delete ---------- */
+.page-nav-btn,
+.ft-btn {
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+              background 0.15s ease, border-color 0.15s ease;
+}
+ 
+.page-nav-btn:not(:disabled):hover,
+.ft-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(52, 87, 213, 0.25);
+}
+ 
+.page-nav-btn:not(:disabled):active,
+.ft-btn:active { transform: scale(0.9); }
+ 
+.page-nav-btn:not(:disabled):hover {
+  background: #eef1ff;
+  color: #4a67e0;
+}
+ 
+.page-nav-btn svg,
+.ft-btn svg { transition: transform 0.2s ease; }
+ 
+#page-prev:not(:disabled):hover svg { transform: translateX(-3px); }  /* arrows nudge */
+#page-next:not(:disabled):hover svg { transform: translateX(3px); }
+ 
+.ft-btn:hover svg { transform: scale(1.15); }
+.btn-delete-red:hover svg { animation: btn-wiggle 0.45s ease; }
+ 
+@keyframes btn-wiggle {
+  0%, 100% { transform: rotate(0); }
+  25%      { transform: rotate(-14deg); }
+  50%      { transform: rotate(12deg); }
+  75%      { transform: rotate(-8deg); }
+}
+ 
+/* ---------- Password eye icon (keeps its vertical centering) ---------- */
+.eye-icon { transition: transform 0.18s ease; }
+.eye-icon:hover  { transform: translateY(-50%) scale(1.18); }
+.eye-icon:active { transform: translateY(-50%) scale(0.9); }
+ 
+/* ---------- Top bar links: My Links / Dashboard / Logout ---------- */
+.nav-links a,
+.topbar > a.nav-left {
+  transition: opacity 0.20s ease, transform 0.20s ease;
+}
+ 
+.nav-links a:hover,
+.topbar > a.nav-left:hover { transform: translateY(-2px); }
+ 
+.logout-icon,
+.db-icon,
+.link-icon { transition: transform 0.5s ease; }
+ 
+.nav-links a:hover .logout-icon { transform: translateX(4px); }
+ 
+.topbar > a.nav-left:hover .db-icon,
+.topbar > a.nav-left:hover .link-icon { transform: scale(1.15) rotate(-6deg); }
+ 
+/* ---------- Keyboard focus ring on every button ---------- */
+button:focus-visible {
+  outline: 3px solid rgba(52, 87, 213, 0.4);
+  outline-offset: 2px;
+}
+ 
+/* ---------- People who turn animations off in their system settings ---------- */
+@media (prefers-reduced-motion: reduce) {
+  button,
+  button svg,
+  button img,
+  button::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

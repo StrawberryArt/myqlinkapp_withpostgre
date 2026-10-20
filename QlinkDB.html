@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qlink.app dashboard</title>
+  <link rel="stylesheet" href="Qlinkcss.css">
+  <link rel="stylesheet" href="button-animations.css">
+</head>
+<body class="dashboard-body">
+
+<header class="topbar">
+  <a href="MyLinks.html" class="nav-left">
+    <img src="images/linkIcon.png" alt="" class="link-icon"> My Links
+  </a>
+
+  <a href="QlinkDB.html">
+    <img src="images/Qlinklogo.png" alt="QLink logo" class="DB-logo">
+  </a>
+
+  <ul class="nav-links">
+    <li>
+      <a href="api.php?action=logout">
+        <img src="images/logoutDoor.png" alt="" class="logout-icon"> Logout
+      </a>
+    </li>
+  </ul>
+</header>
+
+<main class="page">
+
+  <!-- Shorten Form -->
+  <section class="shortener-card">
+    <form class="input-container" action="#" method="POST">
+      <input type="url" name="shortlinkinput" placeholder="Paste URL" required>
+      <input type="text" name="custominput" placeholder="Custom link name">
+      <p class="limit-note" id="limit-note">13 limit**</p>
+      <button type="submit" id="shorten-button">Shorten</button>
+    </form>
+  </section>
+
+  <!-- Links Table -->
+  <section class="links-table-wrap">
+    <table class="links-table">
+      <thead>
+        <tr>
+          <th>Custom link</th>
+          <th>Long URL</th>
+          <th>Clicks</th>
+          <th>View</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- JS dynamically renders links here -->
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<script src="QlinkJS.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qlink.app Login</title>
+  <link rel="stylesheet" href="Qlinkcss.css">
+  <link rel="stylesheet" href="button-animations.css">
+</head>
+<body>
+
+  <span class="pg-title" id="pg-title">Login</span>
+  
+  <div class="loginpg-container">
+    <!-- Left Section -->
+    <div class="left-section">
+      <header>
+        <a href="Qlinkhtml.html">
+          <img src="images/Qlinklogo.png" alt="QLink logo" class="login-logo">
+        </a>
+      </header>
+
+      <div class="left-text">
+        <h1>Shorten links.<br>Share anywhere.</h1>
+        <p>Create short and powerful links that are easy to share and track</p>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <main class="right-section">
+      <div class="login-box">
+        <p id="error-message" class="error-prompt">Incorrect username or password</p>
+        <p id="success-message" class="error-prompt success-prompt">You're registered! Please log in.</p>
+
+        <!-- LOGIN FORM -->
+        <form id="user-form" class="active-form" action="#" method="POST">
+          <input type="text" name="username" placeholder="User name" required>
+
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <img src="images/eye closed.png" class="eye-icon" id="eyeIcon" alt="Toggle password visibility">
+          </div>
+
+          <button type="submit">Login</button>
+
+          <p class="register-prompt" id="to-register">
+            Don't have an account? <a href="#">Register here</a>
+          </p>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="register-form" class="hidden-form" action="#" method="POST">
+          <input type="text" name="username" placeholder="User name" required>
+          <p class="field-error" id="username-error">username already taken</p>
+          
+          <div class="password-wrapper">
+            <input type="password" id="reg-password" name="password" placeholder="Password" required>
+            <img src="images/eye closed.png" class="eye-icon" id="eyeIcon2" alt="Toggle password visibility">
+          </div>
+
+          <div class="password-wrapper">
+            <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm password" required>
+            <img src="images/eye closed.png" class="eye-icon" id="eyeIcon3" alt="Toggle password visibility">
+          </div>
+          <p class="field-error" id="confirm-error">password does not match</p>
+
+          <button type="submit">Register</button>
+
+          <p class="register-prompt" id="to-login">
+            Already have an account? <a href="#">Login here</a>
+          </p>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="QlinkJS.js"></script>
+</body>
+</html>
