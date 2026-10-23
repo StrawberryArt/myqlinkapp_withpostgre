@@ -1,0 +1,27 @@
+<--!table for registration(users) & table links(links)-->
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL
+);
+ 
+CREATE TABLE IF NOT EXISTS links (
+  id SERIAL PRIMARY KEY,
+  owner TEXT NOT NULL,
+  name TEXT NOT NULL,
+  long_url TEXT NOT NULL,
+  clicks INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+ 
+CREATE UNIQUE INDEX IF NOT EXISTS links_name_lower_idx ON links (lower(name));
+
+<--!table for login-->
+  CREATE TABLE login_logs (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(100),
+  status VARCHAR(20),
+  logged_at TIMESTAMP DEFAULT NOW()
+
+  
+);
