@@ -10,7 +10,7 @@ if ($action === 'logout') {
     logAction('LOGOUT  user=' . ($_SESSION['user'] ?? '(none)'));
     $_SESSION = [];
     session_destroy();
-    header('Location: Qlinkhtml.html');
+    header('Location: Qlinkhtml.php');
     exit;
 }
 
@@ -33,9 +33,19 @@ function isSafeUrl(string $url): bool {
         && in_array(strtolower($p['scheme']), ['http', 'https'], true);
 }
 
-// 23505 = PostgreSQL "unique violation" (name/username already exists)
 function isDuplicate(PDOException $e): bool {
     return $e->getCode() === '23505';
+}
+
+// NEW: saves every login attempt (OK or FAILED) in the login_logs table.
+// The try/catch makes sure a logging problem never breaks the login itself.
+function logLoginDb(PDO $pdo, string $username, string $status): void {
+    try {
+        $stmt = $pdo->prepare("INSERT INTO login_logs (username, status) VALUES (?, ?)");
+        $stmt->execute([mb_substr($username, 0, 100), $status]);
+    } catch (PDOException $e) {
+        
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -76,9 +86,11 @@ switch ($action) {
             session_regenerate_id(true);
             $_SESSION['user'] = $name;
             logAction("LOGIN  user=$name  OK");
+            logLoginDb($pdo, $name, 'OK');            // NEW: saved in database
             out(['ok' => true]);
         }
         logAction("LOGIN  user=$name  FAILED (wrong login)");
+        logLoginDb($pdo, $name, 'FAILED');            // NEW: saved in database
         out(['error' => 'wrong login'], 401);
 
     case 'list':
